@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>模板</title>
+		<!-- 载入bootstrap的css -->
+		<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css"/>
+
+	</head>
+	<body>
+		<h1>hello world</h1>
+<form action="/polls/index/" method="post">
+    {% csrf_token %}
+    <p><label>用户名：</label><input name="user"/><p/>
+    <p><label>密码：</label><input name="pwd"/><p/>
+    <input type="submit" value="提交"/>
+    你好我是管理员 {{ name }} ，快输密码我看着你呢
+</form>
+	<script src="../static/bootstrap/js/jquery-3.6.0.js"></script>
+	<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+	</body>
+</html>
