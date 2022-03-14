@@ -32,11 +32,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/bootstrap/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/bootstrap/css" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\One-stop-management-system\system\djangoA\static\bootstrap\css" />
+      <recent name="D:\One-stop-management-system\system\djangoA\templates" />
       <recent name="D:\One-stop-management-system\system\djangoA\static\bootstrap\js" />
       <recent name="D:\One-stop-management-system\system\djangoA\templates\polls" />
       <recent name="D:\One-stop-management-system\system\djangoA\static" />
@@ -81,11 +83,27 @@
       <option name="presentableId" value="Default" />
       <updated>1647069720975</updated>
       <workItem from="1647069742014" duration="58000" />
-      <workItem from="1647069833432" duration="6141000" />
+      <workItem from="1647069833432" duration="7533000" />
+      <workItem from="1647168066633" duration="4018000" />
+      <workItem from="1647175201634" duration="944000" />
+      <workItem from="1647243550213" duration="2980000" />
+      <workItem from="1647247381305" duration="5253000" />
+      <workItem from="1647254455043" duration="700000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
