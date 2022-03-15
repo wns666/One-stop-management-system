@@ -2,15 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>注册</title>
+    <title>学生注册</title>
+
+    <link rel="stylesheet" href="../../static/bootstrap/css/freestyle.css">
 </head>
 <body>
-<form action="/polls/register/" method="post">
-    {% csrf_token %}
-     <p><label>身份证号</label><input name="w_no"/><p/>
-    <p><label>姓名</label><input name="w_name"/><p/>
-    <p><label>密码</label><input name="w_pass"/><p/>
-    <input type="submit" value="注册"/>
-</form>
+    <!-- partial:index.partial.html -->
+    <!-- Form-->
+    <div class="form">
+        <div class="form-toggle"></div>
+        <div class="form-panel one">
+            <div class="form-header">
+                <h1>注册</h1>
+            </div>
+            <div class="form-content">
+                <form action="/polls/register/" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">身份证号</label>
+                        <input type="text" id="username" name="w_no" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">姓名</label>
+                        <input type="text" id="name" name="w_name" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" id="password" name="w_pass" required="required" />
+                    </div>
+                    <div class="form-group">
+{#                        <input type="submit" value="提交"/>#}
+                        <button type="submit">注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{#    <script src='../static/bootstrap/js/jquery.min.js'></script>#}
+{##}
+{#    <script src="../static/bootstrap/js/script.js"></script>#}
 </body>
 </html>
+

@@ -11,12 +11,7 @@ from .models import *
 
 #
 def toLogin_view(request):
-    return render(request, '../templates/login.html', {'name': 'wlqtc'})
-
-
-#
-def toregister_view(request):
-    return render(request, '../template/register.html')
+    return render(request, 'login.html', {'name': 'wlqtc'})
 
 
 def toregister_view(request):
