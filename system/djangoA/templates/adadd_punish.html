@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>添加处分</h1>
+<form action="/adapp/add_punish/" method="post">
+    {% csrf_token %}
+    <p><label>学号</label><input name="id"/><p/>
+    <p><label>姓名</label><input name="name"/><p/>
+    <p><label>日期</label><input name="date"/><p/>
+    <p><label>处分级别</label><input name="pl"/><p/>
+    <p><label>概述</label><input name="thing"/><p/>
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

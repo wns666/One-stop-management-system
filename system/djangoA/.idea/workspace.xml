@@ -13,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -30,7 +30,7 @@
     </file-type-list>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="26H9bzQcuUNnwtYtGtkodvdJx2m" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -43,8 +43,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/toregister/static" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/MC/Django-Stu-master/学生信息管理系统" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -103,6 +103,10 @@
       <workItem from="1647254455043" duration="700000" />
       <workItem from="1647265555260" duration="1587000" />
       <workItem from="1647326956796" duration="11000000" />
+      <workItem from="1647426887413" duration="1925000" />
+      <workItem from="1648708106733" duration="9013000" />
+      <workItem from="1649236782372" duration="15460000" />
+      <workItem from="1649571840944" duration="31646000" />
     </task>
     <servers />
   </component>

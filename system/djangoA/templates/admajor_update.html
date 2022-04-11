@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="/adapp/update/" method="post">
+    {% csrf_token %}
+    <p><label>专业号</label><input name="id" value="{{ u }}"/><p/>
+    <p><label>宿舍楼</label><input name="docu"/><p/>
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

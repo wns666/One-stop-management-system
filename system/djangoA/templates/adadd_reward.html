@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>添加奖项</h1>
+<form action="/adapp/add_reward/" method="post">
+    {% csrf_token %}
+    <p><label>学号</label><input name="id" value="{{ u }}"/><p/>
+    <p><label>姓名</label><input name="name"/><p/>
+    <p><label>日期</label><input name="date"/><p/>
+    <p><label>奖项名称</label><input name="thing"/><p/>
+    <p><label>奖项等级</label><input name="rl"/><p/>
+    <p><label>奖项</label><input name="rname"/><p/>
+    <p><label>主办方</label><input name="organ"/><p/>
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>
