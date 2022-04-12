@@ -140,10 +140,31 @@ class WDist(models.Model):
     w_ano = models.CharField(max_length=50, blank=True, null=True)
     w_dno = models.CharField(max_length=10, blank=True, null=True)
     w_dorm = models.CharField(max_length=10, blank=True, null=True)
+    w_sex = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'w_dist'
+
+
+class WInform(models.Model):
+    w_ano = models.CharField(primary_key=True, max_length=50)
+    w_l1 = models.CharField(max_length=50, blank=True, null=True)
+    w_l2 = models.CharField(max_length=50, blank=True, null=True)
+    w_l3 = models.CharField(max_length=50, blank=True, null=True)
+    w_l4 = models.CharField(max_length=50, blank=True, null=True)
+    w_l5 = models.CharField(max_length=50, blank=True, null=True)
+    w_l6 = models.CharField(max_length=50, blank=True, null=True)
+    w_l7 = models.CharField(max_length=50, blank=True, null=True)
+    w_l8 = models.CharField(max_length=50, blank=True, null=True)
+    w_l9 = models.CharField(max_length=50, blank=True, null=True)
+    w_l10 = models.CharField(max_length=50, blank=True, null=True)
+    w_l11 = models.CharField(max_length=50, blank=True, null=True)
+    w_l12 = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'w_inform'
 
 
 class WInit(models.Model):
@@ -164,6 +185,7 @@ class WMajor(models.Model):
     w_mname = models.CharField(max_length=30)
     w_dorm = models.CharField(max_length=10, blank=True, null=True)
     w_fee = models.IntegerField(blank=True, null=True)
+    w_dorm2 = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -208,6 +230,21 @@ class WReward(models.Model):
     class Meta:
         managed = False
         db_table = 'w_reward'
+
+
+class WRewardApply(models.Model):
+    w_num = models.AutoField(primary_key=True)
+    w_ano = models.CharField(max_length=50)
+    w_name = models.CharField(max_length=50)
+    w_date = models.CharField(max_length=20, blank=True, null=True)
+    w_rl = models.CharField(max_length=20, blank=True, null=True)
+    w_thing = models.CharField(max_length=100, blank=True, null=True)
+    w_rename = models.CharField(max_length=20, blank=True, null=True)
+    w_organ = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'w_reward_apply'
 
 
 class WStup(models.Model):

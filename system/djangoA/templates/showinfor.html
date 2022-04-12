@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>基本信息</title>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">{{ show_stu.w_name }}的信息</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+               <p>身份证号：{{ show_stu.w_no }}</p>
+                <p>学号：{{ show_stu.w_ano }}</p>
+                <p>班级：{{ show_stu.w_class }}</p>
+                <p>专业：({{ show_stu2.w_mno }}){{ show_stu2.w_mname }}</p>
+                <p>宿舍楼：{{ show_stu.w_dorm }}</p>
+                <p>宿舍号：{{ show_stu.w_dno }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block ltitle %}
+   <h3>学生基本信息</h3>
+{% endblock %}

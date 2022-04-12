@@ -1,20 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-{{ x }}的缴费情况
-<p>应交：{{ total_list.w_amount1 }}</p>
-<p>实交：{{ total_list.w_amount2 }}</p>
-<p>需补交：{{ y }}</p>
-<form action="/polls/upam/" method="post">
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">{{ x }}的缴费情况</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <p>应交：{{ total_list.w_amount1 }}</p>
+                <p>实交：{{ total_list.w_amount2 }}</p>
+                <p>需补交：{{ y }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<form action="/polls/upam/" method="post" >
     {% csrf_token %}
-    <input type="submit" value="缴费"/>
+    <input class="btn btn-primary" type="submit" value="缴费"/>
 </form>
-</body>
-</html>
+{% endblock %}
+{% block ltitle %}
+    <h3>缴费情况</h3>
+{% endblock %}

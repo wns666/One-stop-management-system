@@ -1,17 +1,26 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<form action="/polls/finupam/" method="post">
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-body">
+            <form action="/polls/finupam/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="helperText">缴费金额:</label>
+                    <input type="number" id="helperText" name="am" class="form-control" placeholder="Number">
+                    <p><small class="text-muted">选择你要缴费的金额.</small>
+                    </p>
+                </div>
+                <input class="btn btn-primary" type="submit" value="提交"/>
+            </form>
+        </div>
+    </div>
+</section>
+<form action="/polls/showrecord/" method="post">
     {% csrf_token %}
-    <p><label>缴费金额：</label><input type="number" name="am"/><p/>
-    <input type="submit" value="提交"/>
+    <input class="btn btn-primary" type="submit" value="查看记录"/>
 </form>
-</body>
-</html>
+{% endblock %}
+{% block ltitle %}
+<h3>缴费</h3>
+{% endblock %}

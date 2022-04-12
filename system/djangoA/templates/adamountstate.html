@@ -1,0 +1,20 @@
+{% extends "addatabase.html" %}
+{% block tablehead %}
+    <th>学号</th>
+    <th>姓名</th>
+    <th>应交</th>
+    <th>实交</th>
+{% endblock %}
+{% block tablebody %}
+    {% for publisher_obj in amount_list %}
+    <tr>
+        <td >{{ publisher_obj.w_ano }}</td>
+        <td >{{ publisher_obj.w_name }}</td>
+        <td >{{ publisher_obj.w_amount1 }}</td>
+        <td>{{ publisher_obj.w_amount2}}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+{% block ltitle %}
+    <h3>费用不够学生名单</h3>
+{% endblock %}

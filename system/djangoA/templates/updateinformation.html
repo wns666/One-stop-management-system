@@ -1,0 +1,64 @@
+ {% extends "base.html" %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-body">
+            <form action="/polls/finupdateinformation/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="helperText">年龄</label>
+                    <input type="text" class="form-control" id="disabledInput" placeholder="{{ show_stu.w_l1 }}" disabled="">
+                    <p><small class="text-muted"></small>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="helperText">电话</label>
+                    <input type="text" id="helperText" name="w2" class="form-control" value="{{ show_stu.w_l2 }}">
+                    <p><small class="text-muted">您的电话号码</small>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="helperText">QQ</label>
+                    <input type="text" id="helperText" name="w3" class="form-control" value="{{ show_stu.w_l3 }}">
+                    <p><small class="text-muted">您的QQ号</small>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="helperText">户籍</label>
+                    <input type="text" class="form-control" id="disabledInput" placeholder="{{ show_stu.w_l4 }}" disabled="">
+                    <p><small class="text-muted">您的户口所在地</small>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="helperText">监护人1姓名</label>
+                    <input type="text" id="helperText" name="w5" class="form-control" value="{{ show_stu.w_l5 }}">
+                    <p><small class="text-muted"></small>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="helperText">电话</label>
+                    <input type="text" id="helperText" name="w6" class="form-control" value="{{ show_stu.w_l6 }}">
+                    <p><small class="text-muted"></small>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="helperText">监护人2姓名</label>
+                    <input type="text" id="helperText" name="w7" class="form-control" value="{{ show_stu.w_l7 }}">
+                    <p><small class="text-muted"></small>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="helperText">电话</label>
+                    <input type="text" id="helperText" name="w8" class="form-control" value="{{ show_stu.w_l8 }}">
+                    <p><small class="text-muted"></small>
+                    </p>
+                </div>
+                <input class="btn btn-primary" type="submit" value="提交"/>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block ltitle %}
+<h3>修改详细信息</h3>
+{% endblock %}

@@ -18,6 +18,14 @@ urlpatterns = [
     path('add_punish_go/', views.add_punish_go_view),
     path('add_punish/', views.add_punish_view),
     path('add_reward_go/', views.add_reward_go_view),
-    path('add_reward/', views.add_reward_view)
+    path('add_reward/', views.add_reward_view),
+    path('ad_search_major/', views.ad_search_major_view),
+    path('apply_reward/', views.apply_reward_view),
+    path('update_apply/', views.update_apply_view),
+    path('ad_search_dist/', views.ad_search_dist_view),
+    path('search_student/', views.search_student_view),
+    path('show_information/', views.show_information_view),
+    path('adstate/', views.adstate_view),
+    path('ad_amountstate/', views.ad_amountstate_view),
     # path('finishdist/', views.finishdist_view),
 ]

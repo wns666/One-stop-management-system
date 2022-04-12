@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>父模板</title>
+    {% endblock %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="/static/assets/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="/static/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/static/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/assets/css/app.css">
+    <link rel="shortcut icon" href="/static/assets/images/favicon.svg" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <img src="/static/assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">菜单</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="../ad_search_dist" class='sidebar-link'>
+                                <i class="bi bi-person-badge-fill"></i>
+                                <span>学生管理</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="../search_student" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>学籍管理</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="../ad_search_major/" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>专业信息</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-file-earmark-medical-fill"></i>
+                                <span>奖惩管理</span>
+                            </a>
+                            <ul class="submenu" style="display: none;">
+                                <li class="submenu-item ">
+                                    <a href="#">查询记录</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="../apply_reward">申请列表</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="../add_reward_go">添加奖项</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="../add_punish_go">添加处分</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-basket-fill"></i>
+                                <span>财务管理</span>
+                            </a>
+                            <ul class="submenu" style="display: none;">
+                                <li class="submenu-item ">
+                                    <a href="#">按条件查询记录</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">修改金额</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="../ad_amountstate">未缴费名单</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                {% block ltitle %}
+                <h3>Profile Statistics</h3>
+                {% endblock %}
+            </div>
+{#            填充内容#}
+            <section class="section">
+                <div class="row" id="table-striped">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-8"></div>
+
+                                    <div class="col-md-4">
+                                        {% block search %}
+
+                                        {% endblock %}
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="card-content">
+                                <!-- table striped -->
+                                <div class="table-responsive">
+                                    <table class="table table-striped mb-0">
+                                        <thead>
+                                            <tr>
+                                                {% block tablehead %}
+
+                                                {% endblock %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% block tablebody %}
+
+                                            {% endblock %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2022 &copy; Mazer</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                                href="http://www.bootstrapmb.com">A. Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="/static/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/static/assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="/static/assets/js/pages/dashboard.js"></script>
+    {% block addjs %}{% endblock %}
+    <script src="/static/assets/js/main.js"></script>
+</body>
+
+</html>

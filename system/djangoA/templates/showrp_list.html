@@ -1,101 +1,89 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<p>{{ x }}的获奖情况</p>
-<table class="table table-dark table-striped shadow-dark">
-    <thead>
-        <tr role="row" class="odd">
-            <th class="sorting_asc" tabindex="0"
-                aria-controls="default-datatable" rowspan="1" colspan="1"
-                aria-sort="ascending"
-                aria-label="Name: activate to sort column descending"
-                style="width: 140px;
-                       font-size:17px">
-                <p>日期</p>
-            </th>
-            <th class="sorting" tabindex="0" aria-controls="default-datatable"
-                rowspan="1" colspan="1"
-                aria-label="Name: activate to sort column descending"
-                style="width: 225px;font-size:17px"><p>奖项名称</p>
-            </th>
-            <th class="sorting" tabindex="0" aria-controls="default-datatable"
-                rowspan="1" colspan="1"
-                aria-label="Name: activate to sort column descending"
-                style="width: 101px;font-size:17px"><p>奖项等级</p>
-            </th>
-            <th class="sorting" tabindex="0" aria-controls="default-datatable"
-                rowspan="1" colspan="1"
-                aria-label="Name: activate to sort column descending"
-                style="width: 101px;font-size:17px"><p>奖项</p>
-            </th>
-            <th class="sorting" tabindex="0" aria-controls="default-datatable"
-                rowspan="1" colspan="1"
-                aria-label="Name: activate to sort column descending"
-                style="width: 26px;font-size:17px"><p>主办方</p>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for publisher_obj in reward_list %}
-        <tr role="row" class="odd">
-            <td class="sorting_1">{{ publisher_obj.w_date }}</td>
-            <td>{{ publisher_obj.w_thing}}</td>
-            <td>{{ publisher_obj.w_rl}}</td>
-            <td>{{ publisher_obj.w_rename}}</td>
-            <td>{{ publisher_obj.w_organ}}</td>
-        </tr>
-        {% endfor %}
+{% extends "base.html" %}
+{% block title %}
+    <title>奖惩信息</title>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="row" id="table-striped">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">获奖情况</h4>
+                </div>
+                <div class="card-content">
+                    <!-- table striped -->
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>奖项名称</th>
+                                    <th>奖项等级</th>
+                                    <th>奖项</th>
+                                    <th>主办方</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for publisher_obj in reward_list %}
+                                <tr>
+                                    <td >{{ publisher_obj.w_date }}</td>
+                                    <td>{{ publisher_obj.w_thing}}</td>
+                                    <td>{{ publisher_obj.w_rl}}</td>
+                                    <td>{{ publisher_obj.w_rename}}</td>
+                                    <td>{{ publisher_obj.w_organ}}</td>
+                                </tr>
+                                {% endfor %}
 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    </tbody>
+<section class="section">
+    <div class="row" id="table-striped">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">处分情况</h4>
+                </div>
+                <div class="card-content">
+                    <!-- table striped -->
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>处分级别</th>
+                                    <th>概述</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for publisher_obj in punish_list %}
+                                <tr>
+                                    <td class="sorting_1">{{ publisher_obj.w_date }}</td>
+                                    <td>{{ publisher_obj.w_pl}}</td>
+                                    <td>{{ publisher_obj.w_thing}}</td>
+                                </tr>
+                                {% endfor %}
 
-</table>
-<p>{{ x }}的处分情况</p>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<table class="table table-dark table-striped shadow-dark">
-    <thead>
-        <tr role="row" class="odd">
-            <th class="sorting_asc" tabindex="0"
-                aria-controls="default-datatable" rowspan="1" colspan="1"
-                aria-sort="ascending"
-                aria-label="Name: activate to sort column descending"
-                style="width: 140px;
-                       font-size:17px">
-                <p>日期</p>
-            </th>
-            <th class="sorting" tabindex="0" aria-controls="default-datatable"
-                rowspan="1" colspan="1"
-                aria-label="Name: activate to sort column descending"
-                style="width: 225px;font-size:17px"><p>处分级别</p>
-            </th>
-            <th class="sorting" tabindex="0" aria-controls="default-datatable"
-                rowspan="1" colspan="1"
-                aria-label="Name: activate to sort column descending"
-                style="width: 101px;font-size:17px"><p>概述</p>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for publisher_obj in punish_list %}
-        <tr role="row" class="odd">
-            <td class="sorting_1">{{ publisher_obj.w_date }}</td>
-            <td>{{ publisher_obj.w_pl}}</td>
-            <td>{{ publisher_obj.w_thing}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-
-</table>
-<form action="/adapp/finishdorm/" method="post">
+<form action="/polls/applyreward/" method="post">
     {% csrf_token %}
-    <input type="submit" value="完成工作"/>
+    <input class="btn btn-primary" type="submit" value="申请增加奖项信息"/>
 </form>
-</body>
-</html>
+{% endblock %}
+{% block ltitle %}
+    <h3>{{ x }}</h3>
+{% endblock %}

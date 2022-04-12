@@ -1,20 +1,51 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<form action="/adapp/showdist_update/" method="post">
-    {% csrf_token %}
-    <p><label>身份证号</label><input name="id" value="{{ u }}"/><p/>
-    <p><label>班级</label><input name="class"/><p/>
-    <p><label>学号</label><input name="ano"/><p/>
-    <p><label>宿舍号</label><input name="dno"/><p/>
-    <input type="submit" value="提交"/>
-</form>
-</body>
-</html>
+{% extends "adbase.html" %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <form action="/adapp/showdist_update/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="helperText">身份证号</label>
+                            <input id="helperText" name="id" class="form-control" value="{{ u }}">
+                            <p><small class="text-muted"></small>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="helperText">专业号</label>
+                            <input id="helperText" name="mno" class="form-control" value="{{ w }}">
+                            <p><small class="text-muted"></small>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="helperText">班级</label>
+                            <input id="helperText" name="class" class="form-control">
+                            <p><small class="text-muted"></small>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="helperText">学号</label>
+                            <input id="helperText" name="ano" class="form-control">
+                            <p><small class="text-muted"></small>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="helperText">宿舍号</label>
+                            <input id="helperText" name="dno" class="form-control">
+                            <p><small class="text-muted"></small>
+                            </p>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="提交"/>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block ltitle %}
+    <h3>修改学生信息</h3>
+{% endblock %}

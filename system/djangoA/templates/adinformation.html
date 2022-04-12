@@ -1,0 +1,55 @@
+{% extends "adbase.html" %}
+{% block title %}
+    <title>详细信息</title>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">{{ ad_stu2.w_name }}的信息</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                <p>年龄：{{ ad_stu3.w_l1 }}</p>
+                <p>电话：{{ ad_stu3.w_l2 }}</p>
+                <p>QQ：{{ ad_stu3.w_l3 }}</p>
+                <p>户籍所在地：{{ ad_stu3.w_l4 }}</p>
+                </div>
+                <div class="col-md-6">
+                <p>监护人1姓名：{{ ad_stu3.w_l5 }}</p>
+                <p>电话：{{ ad_stu3.w_l6 }}</p>
+                <p>监护人2姓名：{{ ad_stu3.w_l7 }}</p>
+                <p>母亲电话：{{ ad_stu3.w_l8 }}</p>
+                </div>
+                <div class="col-md-2">
+                    学籍信息:
+                    <form action="/adapp/adstate/" method="post">
+                        {% csrf_token %}
+                    <div class="input-group mb-3">
+                    <input name="ano" value="{{ ad_stu2.w_ano }}" type="hidden">
+                    <select class="form-select" id="inputGroupSelect01" name="state">
+                        <option selected="">{{ ad_stu4.w_state }}</option>
+                        <option value="在读">在读</option>
+                        <option value="休学">休学</option>
+                        <option value="转出">转出</option>
+                        <option value="退学">退学</option>
+                    </select>
+                    <input class="input-group-text" type="submit" value="提交"/>
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{#<form action="/polls/show_updateinform/" method="post">#}
+{#    {% csrf_token %}#}
+{#    <input class="btn btn-primary" type="submit" value="修改详细信息"/>#}
+{#</form>#}
+{% endblock %}
+{% block ltitle %}
+   <h3>学生详细信息</h3>
+{% endblock %}

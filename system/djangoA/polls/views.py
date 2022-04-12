@@ -42,18 +42,22 @@ def Login_view(request):
         c = WStup.objects.filter(w_ano=u, w_pass=p).count()
         d = WStup.objects.filter(w_no=u, w_pass=p).count()
         if c >= 1:
-            show_stu = WDist.objects.get(w_ano=u)
-            show_stu2 = WMajor.objects.get(w_mno=show_stu.w_mno)
             request.session["login_user"] = u
-            return render(request, "index.html", locals())  # 给个响应
+            return render(request, "index.html")  # 给个响应
         elif d >= 1:
             show_stu = WDist.objects.get(w_no=u)
-            show_stu2 = WMajor.objects.get(w_mno=show_stu.w_mno)
             request.session["login_user"] = show_stu.w_ano
-            return render(request, "index.html", locals())  # 给个响应
+            return render(request, "index.html")  # 给个响应
         else:
             error_msg = '用户名或密码错误'
             return render(request, 'login.html', {'error_msg': error_msg})
+
+
+def showinfor_view(request):
+    x = request.session["login_user"]
+    show_stu = WDist.objects.get(w_ano=x)
+    show_stu2 = WMajor.objects.get(w_mno=show_stu.w_mno)
+    return render(request, 'showinfor.html', locals())
 
 
 def showrp_list_view(request):
@@ -91,3 +95,56 @@ def finupam_view(request):
     zc = WRecord(w_ano=x, w_name=c.w_name, w_date=e, w_amount=z)
     zc.save()
     return render(request, "showtotal_list.html", locals())
+
+
+def showrecord_view(request):
+    x = request.session["login_user"]
+    record_list = WRecord.objects.filter(w_ano=x)
+    return render(request, "showrecord.html", locals())
+
+
+def showinformation_view(request):
+    x = request.session["login_user"]
+    show_stu = WInform.objects.get(w_ano=x)
+    return render(request, "showinformation.html", locals())
+
+
+def show_updateinform_view(request):
+    x = request.session["login_user"]
+    show_stu = WInform.objects.get(w_ano=x)
+    return render(request, "updateinformation.html", locals())
+
+
+def finupdateinformation_view(request):
+    x = request.session["login_user"]
+    # infor1 = request.POST.get("w1", '')
+    infor2 = request.POST.get("w2", '')
+    infor3 = request.POST.get("w3", '')
+    # infor4 = request.POST.get("w4", '')
+    infor5 = request.POST.get("w5", '')
+    infor6 = request.POST.get("w6", '')
+    infor7 = request.POST.get("w7", '')
+    infor8 = request.POST.get("w8", '')
+    WInform.objects.filter(w_ano=x).update(w_l2=infor2, w_l3=infor3, w_l5=infor5, w_l6=infor6,
+                                           w_l7=infor7, w_l8=infor8)
+    show_stu = WInform.objects.get(w_ano=x)
+    return render(request, "showinformation.html", locals())
+
+
+def applyreward_view(request):
+    return render(request, "stu_add_reward.html")
+
+
+def add_reward_view(request):
+    x = request.session["login_user"]
+    a = x
+    c_b = WDist.objects.get(w_ano=x)
+    b = c_b.w_name
+    c = request.POST.get("date", '')
+    d = request.POST.get("thing", '')
+    e = request.POST.get("rl", '')
+    f = request.POST.get("rname", '')
+    g = request.POST.get("organ", '')
+    zc = WRewardApply(w_name=b, w_thing=d, w_date=c, w_ano=a, w_rename=f, w_organ=g, w_rl=e)
+    zc.save()
+    return HttpResponse("已经交由管理员审核")

@@ -1,0 +1,33 @@
+{% extends "addatabase.html" %}
+{% block search %}
+{% endblock %}
+{% block tablehead %}
+    <th>申请人学号</th>
+    <th>申请人姓名</th>
+    <th>日期</th>
+    <th>奖项名称</th>
+    <th>奖项等级</th>
+    <th>奖项</th>
+    <th>主办方</th>
+    <th>编辑</th>
+{% endblock %}
+{% block tablebody %}
+    {% for publisher_obj in aplly_reward_list %}
+    <tr>
+        <td >{{ publisher_obj.w_ano }}</td>
+        <td >{{ publisher_obj.w_name }}</td>
+        <td >{{ publisher_obj.w_date }}</td>
+        <td>{{ publisher_obj.w_thing}}</td>
+        <td>{{ publisher_obj.w_rl}}</td>
+        <td>{{ publisher_obj.w_rename}}</td>
+        <td>{{ publisher_obj.w_organ}}</td>
+    <td>
+        <a href="/adapp/update_apply/?id={{ publisher_obj.w_num }}1" class="btn btn-primary">同意</a>
+        <a href="/adapp/update_apply/?id={{ publisher_obj.w_num }}0" class="btn btn-primary">驳回</a>
+    </td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+{% block ltitle %}
+    <h3>申请列表</h3>
+{% endblock %}

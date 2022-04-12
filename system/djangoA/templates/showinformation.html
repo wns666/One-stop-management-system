@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>详细信息</title>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">{{ show_stu.w_ano }}的信息</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                <p>年龄：{{ show_stu.w_l1 }}</p>
+                <p>电话：{{ show_stu.w_l2 }}</p>
+                <p>QQ：{{ show_stu.w_l3 }}</p>
+                <p>户籍所在地：{{ show_stu.w_l4 }}</p>
+                </div>
+                <div class="col-md-6">
+                <p>监护人1姓名：{{ show_stu.w_l5 }}</p>
+                <p>电话：{{ show_stu.w_l6 }}</p>
+                <p>监护人2姓名：{{ show_stu.w_l7 }}</p>
+                <p>母亲电话：{{ show_stu.w_l8 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<form action="/polls/show_updateinform/" method="post">
+    {% csrf_token %}
+    <input class="btn btn-primary" type="submit" value="修改详细信息"/>
+</form>
+{% endblock %}
+{% block ltitle %}
+   <h3>学生详细信息</h3>
+{% endblock %}

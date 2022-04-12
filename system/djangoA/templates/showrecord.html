@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>缴费记录</title>
+{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="row" id="table-striped">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">缴费记录</h4>
+                </div>
+                <div class="card-content">
+                    <!-- table striped -->
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>金额</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for publisher_obj in record_list %}
+                                <tr>
+                                    <td class="sorting_1">{{ publisher_obj.w_date }}</td>
+                                    <td>{{ publisher_obj.w_amount}}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{#<form action="/adapp/finishdorm/" method="post">#}
+{#    {% csrf_token %}#}
+{#    <input type="submit" value="完成工作"/>#}
+{#</form>#}
+{% endblock %}
+{% block ltitle %}
+    <h3>{{ x }}</h3>
+{% endblock %}

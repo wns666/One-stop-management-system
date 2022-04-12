@@ -13,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -43,16 +43,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/MC/Django-Stu-master/学生信息管理系统" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\One-stop-management-system\system\djangoA\templates" />
+      <recent name="D:\One-stop-management-system\system\djangoA\static" />
       <recent name="D:\One-stop-management-system\system\djangoA\toregister\static" />
       <recent name="D:\One-stop-management-system\system\djangoA\static\bootstrap\css" />
-      <recent name="D:\One-stop-management-system\system\djangoA\templates" />
       <recent name="D:\One-stop-management-system\system\djangoA\static\bootstrap\js" />
-      <recent name="D:\One-stop-management-system\system\djangoA\templates\polls" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\One-stop-management-system\system\djangoA\polls" />
@@ -106,7 +106,8 @@
       <workItem from="1647426887413" duration="1925000" />
       <workItem from="1648708106733" duration="9013000" />
       <workItem from="1649236782372" duration="15460000" />
-      <workItem from="1649571840944" duration="31646000" />
+      <workItem from="1649571840944" duration="47224000" />
+      <workItem from="1649721235423" duration="26921000" />
     </task>
     <servers />
   </component>
