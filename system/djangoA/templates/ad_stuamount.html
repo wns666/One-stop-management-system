@@ -1,0 +1,48 @@
+{% extends "adbase.html" %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">{{ v.w_name }}的信息</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-10">
+                <p></p>
+                <p>学号：{{ v.w_ano }}</p>
+                <p>应交：{{ v.w_amount1 }}</p>
+                <p>实交：{{ v.w_amount2 }}</p>
+                </div>
+            <hr>
+            <br>
+            <br>
+                <p>历史缴费记录：</p>
+                <div class="col-md-5">
+                    <div class="table-responsive">
+                        <table class="table table-lg">
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>金额</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for list in amount_list%}
+                                <tr>
+                                    <td>{{ list.w_date }}</td>
+                                    <td>{{ list.w_amount }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block ltitle %}
+    <h3>学生记录</h3>
+{% endblock %}

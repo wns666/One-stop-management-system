@@ -4,11 +4,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from random import sample
-from django.db.models import F
+from django.db.models import F, Q
 from django.shortcuts import render
 
 from polls.models import *
 from django.http import HttpResponseRedirect
+# import xlrd
+# from django.db import connection
 from .models import *
 
 
@@ -60,7 +62,7 @@ def publish_view(request):
 def update_publish_view(request):
     # 转到修改界面
     u = request.GET.get("id")  # 这个id传来的是需要修改的那一行的id
-    return render(request, "admajor_update.html",locals())
+    return render(request, "admajor_update.html", locals())
 
 
 def update_view(request):
@@ -112,11 +114,31 @@ def update_showdist_view(request):
     return render(request, "addist_list.html", locals())
 
 
-# def finishdist_view(request):
-#     dist_list = WDist.objects.all()
-#     for dist1 in dist_list:
-#         WStup.objects.filter(w_ano=dist1.w_no).update(w_ano=dist1.w_ano)
-#     return HttpResponseRedirect("/adapp/showdist")
+def finishdist_view(request):
+    max_mno = 2
+    for i in range(1, max_mno + 1):
+        s = "A"
+        stu_mno = str(i)
+        mno_len = len(stu_mno)
+        for j in range(3-mno_len):
+            stu_mno = "0"+stu_mno
+        s += stu_mno
+        s += "18"
+        stu_mno="0"+stu_mno
+        stu_list = WDist.objects.filter(w_mno=stu_mno).order_by('w_no')
+        # return render(request, "check.html", locals())
+        num = 0
+        for j in stu_list:
+            stu_class = str(j.w_class)
+            s1 = s+str(stu_class[-1])
+            num += 1
+            len1 = len(str(num))
+            for k in range(3 - len1):
+                s1 += "0"
+            s1 += str(num)
+            WDist.objects.filter(w_no=j.w_no).update(w_ano=s1)
+
+    return HttpResponseRedirect("/adapp/ad_search_dist/")
 
 
 def add_punish_go_view(request):
@@ -197,7 +219,70 @@ def adstate_view(request):
     return render(request, "adinformation.html", locals())
 
 
-def ad_amountstate_view(request):
-    # amount_list = WTotal.objects.filter(w_amount2__lt=F('w_amount2'))
-    amount_list = WTotal.objects.filter(w_amount2__lt=F('w_amount1'))
-    return render(request, "adamountstate.html", locals())
+# def ad_amountstate_view(request):
+#     # amount_list = WTotal.objects.filter(w_amount2__lt=F('w_amount2'))
+#     amount_list = WTotal.objects.filter(w_amount2__lt=F('w_amount1'))
+#     return render(request, "adamountstate.html", locals())
+
+
+def adsearch_punish_view(request):
+    punish_list = WPunish.objects.all().order_by('-w_date')
+    return render(request, "ad_punish.html", locals())
+
+
+def adsearch_p_view(request):
+    u = request.POST.get("id", '')
+    punish_list = WPunish.objects.filter(Q(w_date=u) | Q(w_ano=u) | Q(w_name=u) | Q(w_pl=u) | Q(w_thing__contains=u))
+    return render(request, "ad_punish.html", locals())
+
+
+def adsearch_amount_index_view(request):
+    return render(request, "adsearch_amount_index.html", locals())
+
+
+def ad_one_amountstate_view(request):
+    u = request.POST.get("id", '')
+    v = WTotal.objects.get(w_ano=u)
+    amount_list = WRecord.objects.filter(w_ano=u)
+    return render(request, "ad_stuamount.html", locals())
+
+
+def ad_all_amount_view(request):
+    u = request.POST.get("state", '')
+    v = request.POST.get("id", '')
+    if u == "1":
+        amount_list = WRecord.objects.filter(w_date=v)
+        return render(request, "ad_all_amount_list.html", locals())
+    else:
+        if u == "0":
+            amount_list = WTotal.objects.filter(w_amount2__lt=F('w_amount1'))
+            amount_list2 = WTotal.objects.filter(w_amount2__gte=F('w_amount1'))
+        elif u == "mno":
+            amount_list = WTotal.objects.raw(
+                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_mno = %s and w_total.w_amount1>w_total.w_amount2',
+                [v])
+            amount_list2 = WTotal.objects.raw(
+                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_mno = %s and w_total.w_amount1<=w_total.w_amount2',
+                [v])
+        elif u == "class":
+            amount_list = WTotal.objects.raw(
+                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_class = %s and w_total.w_amount1>w_total.w_amount2',
+                [v])
+            amount_list2 = WTotal.objects.raw(
+                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_class = %s and w_total.w_amount1<=w_total.w_amount2',
+                [v])
+        # 查找学号在dist表里专业号为v
+        return render(request, "ad_all_amount.html", locals())
+
+
+def upload_file_go_view(request):
+    return render(request, "adupload_file.html")
+
+
+# def upload_file_view(request):
+#     f = request.FILES.get('file')
+#     excel_type = f.name.split('.')[1]
+#     if excel_type in ['xlsx','xls']:
+#         wb = xlrd.open_workbook(filename=None, file_contents=f.read())
+#         table = wb.sheets()[0]
+#         rows = table.nrows  # 总行数

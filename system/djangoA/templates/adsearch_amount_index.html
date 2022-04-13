@@ -1,0 +1,55 @@
+{% extends "adbase.html" %}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-header">
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>查找学生记录：</label>
+                    <form action="/adapp/ad_one_amountstate/" method="post">
+                            {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" placeholder="按学号查找" required="required" name="id" aria-describedby="button-addon2">
+                        <input type="submit" class="btn btn-primary" value="搜索">
+                    </div>
+                    </form>
+                </div>
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <br>
+
+                    <br>
+                    <br>
+                    <br>
+                    <label>批量查找记录：</label>
+                    <br>
+                    <form action="/adapp/ad_all_amount/" method="post">
+                            {% csrf_token %}
+                    <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                        <select class="form-select" id="inputGroupSelect01" name="state">
+                            <option value="0">全部</option>
+                            <option value="mno">专业</option>
+                            <option value="class">班级</option>
+                            <option value="1">日期</option>
+                        </select>
+                        <input type="text" class="form-control" placeholder="查找" name="id" aria-describedby="button-addon2">
+                        <input type="submit" class="btn btn-primary" value="搜索">
+                    </div>
+                    </form>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block ltitle %}
+    <h3>按条件查询记录</h3>
+{% endblock %}

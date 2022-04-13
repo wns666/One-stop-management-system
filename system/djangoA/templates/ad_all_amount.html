@@ -1,0 +1,36 @@
+{% extends "addatabase.html" %}
+{% block tablehead %}
+    <th>学号</th>
+    <th>姓名</th>
+    <th>应交</th>
+    <th>实交</th>
+    <th>状态</th>
+{% endblock %}
+{% block tablebody %}
+    {% for publisher_obj in amount_list %}
+    <tr>
+        <td >{{ publisher_obj.w_ano }}</td>
+        <td >{{ publisher_obj.w_name }}</td>
+        <td >{{ publisher_obj.w_amount1 }}</td>
+        <td>{{ publisher_obj.w_amount2}}</td>
+        <td>
+            <span class="badge bg-danger">欠费</span>
+        </td>
+    </tr>
+    {% endfor %}
+    {% for publisher_obj1 in amount_list2 %}
+
+    <tr>
+        <td >{{ publisher_obj1.w_ano }}</td>
+        <td >{{ publisher_obj1.w_name }}</td>
+        <td >{{ publisher_obj1.w_amount1 }}</td>
+        <td>{{ publisher_obj1.w_amount2}}</td>
+        <td>
+            <span class="badge bg-success">未欠费</span>
+        </td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+{% block ltitle %}
+    <h3>记录</h3>
+{% endblock %}

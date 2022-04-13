@@ -62,7 +62,7 @@
                             </a>
                             <ul class="submenu" style="display: none;">
                                 <li class="submenu-item ">
-                                    <a href="#">查询记录</a>
+                                    <a href="../adsearch_punish">查询记录</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="../apply_reward">申请列表</a>
@@ -82,13 +82,10 @@
                             </a>
                             <ul class="submenu" style="display: none;">
                                 <li class="submenu-item ">
-                                    <a href="#">按条件查询记录</a>
+                                    <a href="../adsearch_amount_index/">按条件查询记录</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="#">修改金额</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="../ad_amountstate">未缴费名单</a>
                                 </li>
                             </ul>
                         </li>
@@ -147,12 +144,14 @@
                                         </tbody>
                                     </table>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
+            {% block add %}
+            {% endblock %}
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">

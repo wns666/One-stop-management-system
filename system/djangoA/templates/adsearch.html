@@ -12,7 +12,7 @@
                             {% csrf_token %}
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
-                        <input type="text" class="form-control" placeholder="按学号查找" name="id" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="按学号查找" required="required" name="id" aria-describedby="button-addon2">
                         <input type="submit" class="btn btn-primary" value="搜索">
                     </div>
                     </form>

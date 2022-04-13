@@ -39,12 +39,13 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -107,7 +108,9 @@
       <workItem from="1648708106733" duration="9013000" />
       <workItem from="1649236782372" duration="15460000" />
       <workItem from="1649571840944" duration="47224000" />
-      <workItem from="1649721235423" duration="26921000" />
+      <workItem from="1649721235423" duration="27307000" />
+      <workItem from="1649831243187" duration="21776000" />
+      <workItem from="1649854532473" duration="137000" />
     </task>
     <servers />
   </component>

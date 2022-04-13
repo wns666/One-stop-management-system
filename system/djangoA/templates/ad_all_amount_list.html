@@ -1,0 +1,19 @@
+{% extends "addatabase.html" %}
+{% block tablehead %}
+    <th>学号</th>
+    <th>姓名</th>
+    <th>金额</th>
+{% endblock %}
+{% block tablebody %}
+    {% for list in amount_list %}
+        <tr>
+            <td>{{ list.w_ano }}</td>
+            <td>{{ list.w_name }}</td>
+            <td>{{ list.w_amount }}</td>
+        </tr>
+
+    {% endfor %}
+{% endblock %}
+{% block ltitle %}
+    <h3>日期:{{ v }}的记录</h3>
+{% endblock %}
