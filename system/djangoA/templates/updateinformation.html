@@ -7,7 +7,7 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="helperText">年龄</label>
-                    <input type="text" class="form-control" id="disabledInput" placeholder="{{ show_stu.w_l1 }}" disabled="">
+                    <input type="text" class="form-control" name="w1" id="disabledInput" value="{{ show_stu.w_l1 }}" >
                     <p><small class="text-muted"></small>
                     </p>
                 </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="helperText">户籍</label>
-                    <input type="text" class="form-control" id="disabledInput" placeholder="{{ show_stu.w_l4 }}" disabled="">
+                    <input type="text" class="form-control" name="w4" id="disabledInput" value="{{ show_stu.w_l4 }}">
                     <p><small class="text-muted">您的户口所在地</small>
                     </p>
                 </div>

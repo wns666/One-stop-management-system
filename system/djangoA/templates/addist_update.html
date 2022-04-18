@@ -8,14 +8,14 @@
                     <form action="/adapp/showdist_update/" method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="helperText">身份证号</label>
-                            <input id="helperText" name="id" class="form-control" value="{{ u }}" disabled>
+{#                            <label for="helperText">身份证号</label>#}
+                            <input id="helperText" name="id" class="form-control" value="{{ u }}" hidden>
                             <p><small class="text-muted"></small>
                             </p>
                         </div>
                         <div class="form-group">
                             <label for="helperText">专业号</label>
-                            <input id="helperText" name="mno" class="form-control" value="{{ w }}" disabled>
+                            <input id="helperText" name="mno" class="form-control" value="{{ w }}">
                             <p><small class="text-muted"></small>
                             </p>
                         </div>
@@ -26,8 +26,8 @@
                             </p>
                         </div>
                         <div class="form-group">
-                            <label for="helperText">学号</label>
-                            <input id="helperText" name="ano" class="form-control" disabled>
+{#                            <label for="helperText">学号</label>#}
+                            <input id="helperText" name="ano" class="form-control" hidden>
                             <p><small class="text-muted"></small>
                             </p>
                         </div>
@@ -47,5 +47,5 @@
 </section>
 {% endblock %}
 {% block ltitle %}
-    <h3>修改学生信息</h3>
+    <h3>修改学生信息:{{ u }}</h3>
 {% endblock %}

@@ -40,7 +40,37 @@
                     </div>
                     </form>
                 </div>
+                <div class="col-md-8"></div>
+                <div class="col-md-10">
+                    <br>
+                    <br>
+                    <label>获得奖项：</label>
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>奖项名称</th>
+                                    <th>奖项等级</th>
+                                    <th>奖项</th>
+                                    <th>主办方</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for publisher_obj in reward_list %}
+                                <tr>
+                                    <td >{{ publisher_obj.w_date }}</td>
+                                    <td>{{ publisher_obj.w_thing}}</td>
+                                    <td>{{ publisher_obj.w_rl}}</td>
+                                    <td>{{ publisher_obj.w_rename}}</td>
+                                    <td>{{ publisher_obj.w_organ}}</td>
+                                </tr>
+                                {% endfor %}
 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

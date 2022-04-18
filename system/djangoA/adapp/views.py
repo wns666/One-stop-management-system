@@ -9,7 +9,7 @@ from django.shortcuts import render
 
 from polls.models import *
 from django.http import HttpResponseRedirect
-# import xlrd
+import xlrd
 # from django.db import connection
 from .models import *
 
@@ -109,35 +109,42 @@ def update_showdist_view(request):
     p = request.POST.get("class", '')
     v = request.POST.get("ano", '')
     x = request.POST.get("dno", '')
+    # return render(request,"check.html",locals())
     WDist.objects.filter(w_no=u).update(w_class=p, w_ano=v, w_dno=x)  # 修改数据库里面的数据
     showdist_obj_list = WDist.objects.filter(w_mno=w)
     return render(request, "addist_list.html", locals())
 
 
 def finishdist_view(request):
-    max_mno = 2
+    WTotal.objects.all().delete()
+    WInform.objects.all().delete()
+    max_mno = 4
     for i in range(1, max_mno + 1):
         s = "A"
         stu_mno = str(i)
         mno_len = len(stu_mno)
-        for j in range(3-mno_len):
-            stu_mno = "0"+stu_mno
+        for j in range(3 - mno_len):
+            stu_mno = "0" + stu_mno
         s += stu_mno
         s += "18"
-        stu_mno="0"+stu_mno
+        stu_mno = "0" + stu_mno
         stu_list = WDist.objects.filter(w_mno=stu_mno).order_by('w_no')
         # return render(request, "check.html", locals())
         num = 0
         for j in stu_list:
             stu_class = str(j.w_class)
-            s1 = s+str(stu_class[-1])
+            s1 = s + str(stu_class[-1])
             num += 1
             len1 = len(str(num))
             for k in range(3 - len1):
                 s1 += "0"
             s1 += str(num)
             WDist.objects.filter(w_no=j.w_no).update(w_ano=s1)
-
+            fee_l = WMajor.objects.get(w_mno=stu_mno)
+            zc = WTotal(w_ano=s1, w_name=j.w_name, w_state="在读", w_amount2="0", w_amount1=fee_l.w_fee)
+            zc.save()
+            zd = WInform(w_ano=s1)
+            zd.save()
     return HttpResponseRedirect("/adapp/ad_search_dist/")
 
 
@@ -172,7 +179,7 @@ def add_reward_view(request):
     g = request.POST.get("organ", '')
     zc = WReward(w_name=b, w_thing=d, w_date=c, w_ano=a, w_rename=f, w_organ=g, w_rl=e)
     zc.save()
-    return HttpResponseRedirect("adapp/add_reward_go/")
+    return HttpResponseRedirect("/adapp/add_reward_go/")
 
 
 def apply_reward_view(request):
@@ -201,10 +208,16 @@ def search_student_view(request):
 
 def show_information_view(request):
     u = request.POST.get("id", '')
-    ad_stu2 = WDist.objects.get(w_ano=u)
-    ad_stu3 = WInform.objects.get(w_ano=u)
-    ad_stu4 = WTotal.objects.get(w_ano=u)
-    return render(request, "adinformation.html", locals())
+    num = WDist.objects.count()
+    if num >= 1:
+        ad_stu2 = WDist.objects.get(w_ano=u)
+        ad_stu3 = WInform.objects.get(w_ano=u)
+        ad_stu4 = WTotal.objects.get(w_ano=u)
+        reward_list = WReward.objects.filter(w_ano=u)
+        return render(request, "adinformation.html", locals())
+    else:
+        error_msg = '学号输入错误'
+        return render(request, "adsearch.html", {'error_msg': error_msg})
 
 
 def adstate_view(request):
@@ -279,10 +292,45 @@ def upload_file_go_view(request):
     return render(request, "adupload_file.html")
 
 
-# def upload_file_view(request):
-#     f = request.FILES.get('file')
-#     excel_type = f.name.split('.')[1]
-#     if excel_type in ['xlsx','xls']:
-#         wb = xlrd.open_workbook(filename=None, file_contents=f.read())
-#         table = wb.sheets()[0]
-#         rows = table.nrows  # 总行数
+def upload_file_view(request):
+    f = request.FILES.get('file')
+    u = request.POST.get("state", '')
+    # return render(request, "check.html", locals())
+    excel_type = f.name.split('.')[1]
+    if excel_type in ['xlsx', 'xls']:
+        wb = xlrd.open_workbook(filename=None, file_contents=f.read())
+        table = wb.sheets()[0]
+        rows = table.nrows  # 总行数
+        # 从第二行开始存，因为第一行是题头
+        for i in range(1, rows):
+            rowVlaues = table.row_values(i)
+            if u == "0":
+                zc = WInit(w_no=rowVlaues[0], w_lno=rowVlaues[1], w_name=rowVlaues[2], w_sex=rowVlaues[3],
+                           w_mno=rowVlaues[4], w_school=rowVlaues[5])
+                zc.save()
+                zd = WDist(w_no=rowVlaues[0], w_name=rowVlaues[2], w_sex=rowVlaues[3],
+                           w_mno=rowVlaues[4])
+                zd.save()
+            else:
+                zc = WMajor(w_mno=rowVlaues[0], w_mname=rowVlaues[1], w_fee=rowVlaues[2])
+                zc.save()
+        return HttpResponseRedirect("/adapp/ad_search_dist/")
+    else:
+        return HttpResponse("格式错误")
+
+
+# 测试用的非常危险的指令 路由暂时关掉 还是轻易别用吧怪吓人的
+def admin_danger_view(request):
+    WTotal.objects.all().delete()
+    WInform.objects.all().delete()
+    WDist.objects.all().delete()
+    WMajor.objects.all().delete()
+    WRewardApply.objects.all().delete()
+    WInit.objects.all().delete()
+    WRecord.objects.all().delete()
+    WPunish.objects.all().delete()
+    WStup.objects.all().delete()
+    WAdmin.objects.all().delete()
+    WReward.objects.all().delete()
+
+    return HttpResponse("清空成功")

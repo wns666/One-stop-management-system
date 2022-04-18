@@ -117,15 +117,15 @@ def show_updateinform_view(request):
 
 def finupdateinformation_view(request):
     x = request.session["login_user"]
-    # infor1 = request.POST.get("w1", '')
+    infor1 = request.POST.get("w1", '')
     infor2 = request.POST.get("w2", '')
     infor3 = request.POST.get("w3", '')
-    # infor4 = request.POST.get("w4", '')
+    infor4 = request.POST.get("w4", '')
     infor5 = request.POST.get("w5", '')
     infor6 = request.POST.get("w6", '')
     infor7 = request.POST.get("w7", '')
     infor8 = request.POST.get("w8", '')
-    WInform.objects.filter(w_ano=x).update(w_l2=infor2, w_l3=infor3, w_l5=infor5, w_l6=infor6,
+    WInform.objects.filter(w_ano=x).update(w_l1=infor1, w_l2=infor2, w_l3=infor3, w_l4=infor4, w_l5=infor5, w_l6=infor6,
                                            w_l7=infor7, w_l8=infor8)
     show_stu = WInform.objects.get(w_ano=x)
     return render(request, "showinformation.html", locals())
@@ -147,4 +147,5 @@ def add_reward_view(request):
     g = request.POST.get("organ", '')
     zc = WRewardApply(w_name=b, w_thing=d, w_date=c, w_ano=a, w_rename=f, w_organ=g, w_rl=e)
     zc.save()
-    return HttpResponse("已经交由管理员审核")
+    succ_msg = "已成功提交给管理员"
+    return render(request, "success.html",locals())

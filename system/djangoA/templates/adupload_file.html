@@ -1,5 +1,44 @@
-<form action="/adapp/upload_file/" method="post">
-        {% csrf_token %}
-        <input type="file" name="file" id="filename">
-        <button type="submit">提交</button>
-</form>
+{% extends "adbase.html"%}
+{% block content %}
+<section class="section">
+    <div class="card">
+        <div class="card-body">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="/adapp/upload_file/" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-4">
+                        <select class="form-select" id="inputGroupSelect01" name="state">
+                            <option value="0">录取信息</option>
+                            <option value="1">专业信息</option>
+                        </select>
+                        <label class="input-group-text" for="inputGroupFile01"><i class="bi bi-upload"></i></label>
+
+                            {% csrf_token %}
+                            <input type="file" class="form-control" name="file" id="filename">
+                            <button type="submit" class="btn btn-primary">提交</button>
+
+                    </div>
+                    </form>
+                </div>
+                <div class="col-md-6"></div>
+
+            </div>
+
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block ltitle %}
+    <h3>上传学生数据</h3>
+{% endblock %}
