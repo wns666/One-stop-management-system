@@ -141,7 +141,7 @@ def finishdist_view(request):
             s1 += str(num)
             WDist.objects.filter(w_no=j.w_no).update(w_ano=s1)
             fee_l = WMajor.objects.get(w_mno=stu_mno)
-            zc = WTotal(w_ano=s1, w_name=j.w_name, w_state="在读", w_amount2="0", w_amount1=fee_l.w_fee)
+            zc = WTotal(w_ano=s1, w_name=j.w_name, w_state="未报到", w_amount2="0", w_amount1=fee_l.w_fee)
             zc.save()
             zd = WInform(w_ano=s1)
             zd.save()

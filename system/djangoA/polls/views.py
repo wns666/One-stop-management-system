@@ -28,6 +28,7 @@ def register_view(request):
     c = WInit.objects.filter(w_no=u, w_name=n).count()
     if u and n and p and c:
         x = WDist.objects.get(w_no=u)
+        WTotal.objects.filter(w_ano=x.w_ano).update(w_state="在读")
         zc = WStup(w_ano=x.w_ano, w_pass=p, w_no=u)
         zc.save()
         return HttpResponseRedirect("/polls")
