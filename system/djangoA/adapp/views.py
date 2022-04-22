@@ -42,16 +42,12 @@ def Login_view(request):
         c = WAdmin.objects.filter(w_adno=u, w_pass=p).count()
         if c >= 1:
             v = WAdmin.objects.get(w_adno=u)
-            if len(v.w_type) >= 2:
-                request.session["login_user"] = u
-                request.session["login_type"] = v.w_type
-                request.session.set_expiry(0)
-                admin_user = request.session["login_user"]
-                admin_type = request.session["login_type"]
-                return render(request, "adindex.html", locals())  # 给个响应
-            else:
-                error_msg = '用户名或密码错误'
-                return render(request, 'adlogin.html', {'error_msg': error_msg})
+            request.session["login_user"] = u
+            request.session["login_type"] = v.w_type
+            request.session.set_expiry(0)
+            admin_user = request.session["login_user"]
+            admin_type = request.session["login_type"]
+            return render(request, "adindex.html", locals())  # 给个响应
         else:
             error_msg = '用户名或密码错误'
             return render(request, 'adlogin.html', {'error_msg': error_msg})
@@ -372,4 +368,5 @@ def upload_file_view(request):
 def adshow_admin_view(request):
     admin_user = request.session["login_user"]
     admin_type = request.session["login_type"]
+    admin_list = WAdmin.objects.all()
     return render(request, "adshow_admin.html", locals())

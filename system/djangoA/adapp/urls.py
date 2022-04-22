@@ -5,8 +5,8 @@ from . import views
 urlpatterns = [
     path('', views.toLogin_view),  # 与views里面的相应
     path('index/', views.Login_view),
-    path('toregister/', views.toregister_view),
-    path('register/', views.register_view),
+    # path('toregister/', views.toregister_view),
+    # path('register/', views.register_view),
     path('publish/', views.publish_view),
     path('update_publish/', views.update_publish_view),
     path('update/', views.update_view),

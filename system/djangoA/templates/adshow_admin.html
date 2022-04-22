@@ -1,0 +1,20 @@
+{% extends "addatabase.html" %}
+{% block tablehead %}
+    <th>账号</th>
+    <th>类型</th>
+    <th>编辑</th>
+{% endblock %}
+{% block tablebody %}
+
+    {% for list in admin_list %}
+        <tr>
+        <td>{{ list.w_adno }}</td>
+        <td>{{ list.w_type }}</td>
+        <td>
+{#            <a href="/adapp/showdist_go/?id={{ publisher_obj.w_no }}" class="btn btn-primary">修改</a>#}
+        </td>
+        </tr>
+    {% endfor %}
+
+
+{% endblock %}
