@@ -41,19 +41,33 @@ def Login_view(request):
     if u and p:
         c = WAdmin.objects.filter(w_adno=u, w_pass=p).count()
         if c >= 1:
-            return render(request, "adindex.html")  # 给个响应
+            v = WAdmin.objects.get(w_adno=u)
+            if len(v.w_type) >= 2:
+                request.session["login_user"] = u
+                request.session["login_type"] = v.w_type
+                request.session.set_expiry(0)
+                admin_user = request.session["login_user"]
+                admin_type = request.session["login_type"]
+                return render(request, "adindex.html", locals())  # 给个响应
+            else:
+                error_msg = '用户名或密码错误'
+                return render(request, 'adlogin.html', {'error_msg': error_msg})
         else:
             error_msg = '用户名或密码错误'
             return render(request, 'adlogin.html', {'error_msg': error_msg})
 
 
 def ad_search_major_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     publisher_obj_list1 = WMajor.objects.all()
     return render(request, "admajor_list.html", locals())
 
 
 def publish_view(request):
     # 显示宿舍的列表
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.POST.get("mno", '')
     publisher_obj_list1 = WMajor.objects.filter(w_mno=u)  # 获取所有数据
     return render(request, "admajor_list.html", locals())
@@ -61,12 +75,16 @@ def publish_view(request):
 
 def update_publish_view(request):
     # 转到修改界面
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.GET.get("id")  # 这个id传来的是需要修改的那一行的id
     return render(request, "admajor_update.html", locals())
 
 
 def update_view(request):
     # 把已经修改的寝室数据写入数据库
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.POST.get("mno", '')
     p = request.POST.get("docu", '')
     v = request.POST.get("docu2", '')
@@ -86,17 +104,23 @@ def finishdorm_view(request):
 
 
 def ad_search_dist_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     showdist_obj_list = WDist.objects.all()
     return render(request, "addist_list.html", locals())
 
 
 def showdist_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.POST.get("mno", '')
     showdist_obj_list = WDist.objects.filter(w_mno=u)
     return render(request, "addist_list.html", locals())
 
 
 def showdist_go_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.GET.get("id")
     v = WInit.objects.get(w_no=u)
     w = v.w_mno
@@ -104,6 +128,8 @@ def showdist_go_view(request):
 
 
 def update_showdist_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.POST.get("id", '')
     w = request.POST.get("mno", '')
     p = request.POST.get("class", '')
@@ -149,7 +175,9 @@ def finishdist_view(request):
 
 
 def add_punish_go_view(request):
-    return render(request, "adadd_punish.html")
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
+    return render(request, "adadd_punish.html", locals())
 
 
 def add_punish_view(request):
@@ -166,7 +194,9 @@ def add_punish_view(request):
 
 
 def add_reward_go_view(request):
-    return render(request, "adadd_reward.html")
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
+    return render(request, "adadd_reward.html", locals())
 
 
 def add_reward_view(request):
@@ -183,6 +213,8 @@ def add_reward_view(request):
 
 
 def apply_reward_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     aplly_reward_list = WRewardApply.objects.all()
     return render(request, "adapply_reward.html", locals())
 
@@ -203,10 +235,14 @@ def update_apply_view(request):
 
 
 def search_student_view(request):
-    return render(request, "adsearch.html")
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
+    return render(request, "adsearch.html", locals())
 
 
 def show_information_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.POST.get("id", '')
     num = WDist.objects.count()
     if num >= 1:
@@ -221,6 +257,8 @@ def show_information_view(request):
 
 
 def adstate_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     v = request.POST.get("state", '')
     u = request.POST.get("ano", '')
     # if v == "退学":
@@ -239,21 +277,29 @@ def adstate_view(request):
 
 
 def adsearch_punish_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     punish_list = WPunish.objects.all().order_by('-w_date')
     return render(request, "ad_punish.html", locals())
 
 
 def adsearch_p_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.POST.get("id", '')
     punish_list = WPunish.objects.filter(Q(w_date=u) | Q(w_ano=u) | Q(w_name=u) | Q(w_pl=u) | Q(w_thing__contains=u))
     return render(request, "ad_punish.html", locals())
 
 
 def adsearch_amount_index_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     return render(request, "adsearch_amount_index.html", locals())
 
 
 def ad_one_amountstate_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.POST.get("id", '')
     v = WTotal.objects.get(w_ano=u)
     amount_list = WRecord.objects.filter(w_ano=u)
@@ -261,6 +307,8 @@ def ad_one_amountstate_view(request):
 
 
 def ad_all_amount_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
     u = request.POST.get("state", '')
     v = request.POST.get("id", '')
     if u == "1":
@@ -268,28 +316,30 @@ def ad_all_amount_view(request):
         return render(request, "ad_all_amount_list.html", locals())
     else:
         if u == "0":
-            amount_list = WTotal.objects.filter(w_amount2__lt=F('w_amount1'))
-            amount_list2 = WTotal.objects.filter(w_amount2__gte=F('w_amount1'))
+            amount_list = WTotal.objects.filter(w_amount2__lt=F('w_amount1'), w_state="在读")
+            amount_list2 = WTotal.objects.filter(w_amount2__gte=F('w_amount1'), w_state="在读")
         elif u == "mno":
             amount_list = WTotal.objects.raw(
-                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_mno = %s and w_total.w_amount1>w_total.w_amount2',
+                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_mno = %s and w_total.w_amount1>w_total.w_amount2 and w_total.w_state="在读"',
                 [v])
             amount_list2 = WTotal.objects.raw(
-                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_mno = %s and w_total.w_amount1<=w_total.w_amount2',
+                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_mno = %s and w_total.w_amount1<=w_total.w_amount2 and w_total.w_state="在读"',
                 [v])
         elif u == "class":
             amount_list = WTotal.objects.raw(
-                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_class = %s and w_total.w_amount1>w_total.w_amount2',
+                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_class = %s and w_total.w_amount1>w_total.w_amount2 and w_total.w_state="在读"',
                 [v])
             amount_list2 = WTotal.objects.raw(
-                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_class = %s and w_total.w_amount1<=w_total.w_amount2',
+                'select w_abs.w_total.* from w_total,w_dist where w_total.w_ano = w_dist.w_ano and w_dist.w_class = %s and w_total.w_amount1<=w_total.w_amount2 and w_total.w_state="在读"',
                 [v])
         # 查找学号在dist表里专业号为v
         return render(request, "ad_all_amount.html", locals())
 
 
 def upload_file_go_view(request):
-    return render(request, "adupload_file.html")
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
+    return render(request, "adupload_file.html", locals())
 
 
 def upload_file_view(request):
@@ -319,18 +369,7 @@ def upload_file_view(request):
         return HttpResponse("格式错误")
 
 
-# 测试用的非常危险的指令 路由暂时关掉 还是轻易别用吧怪吓人的
-def admin_danger_view(request):
-    WTotal.objects.all().delete()
-    WInform.objects.all().delete()
-    WDist.objects.all().delete()
-    WMajor.objects.all().delete()
-    WRewardApply.objects.all().delete()
-    WInit.objects.all().delete()
-    WRecord.objects.all().delete()
-    WPunish.objects.all().delete()
-    WStup.objects.all().delete()
-    WAdmin.objects.all().delete()
-    WReward.objects.all().delete()
-
-    return HttpResponse("清空成功")
+def adshow_admin_view(request):
+    admin_user = request.session["login_user"]
+    admin_type = request.session["login_type"]
+    return render(request, "adshow_admin.html", locals())

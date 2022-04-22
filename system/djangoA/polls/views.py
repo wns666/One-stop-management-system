@@ -44,6 +44,7 @@ def Login_view(request):
         d = WStup.objects.filter(w_no=u, w_pass=p).count()
         if c >= 1:
             request.session["login_user"] = u
+            request.session.set_expiry(0)
             return render(request, "index.html")  # 给个响应
         elif d >= 1:
             show_stu = WDist.objects.get(w_no=u)

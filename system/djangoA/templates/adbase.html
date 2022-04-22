@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}
-    <title>父模板</title>
+    <title>新生一站式信息管理系统</title>
     {% endblock %}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -36,7 +36,7 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">菜单</li>
-
+                        {% if admin_type == 1 or admin_type == 0 %}
                         <li class="sidebar-item has-sub ">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
@@ -56,12 +56,6 @@
                             <a href="../search_student" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
                                 <span>学籍管理</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="../ad_search_major/" class='sidebar-link'>
-                                <i class="bi bi-grid-1x2-fill"></i>
-                                <span>专业信息</span>
                             </a>
                         </li>
                         <li class="sidebar-item  has-sub">
@@ -84,6 +78,16 @@
                                 </li>
                             </ul>
                         </li>
+                        {% endif %}
+                        {% if admin_type == 2 or admin_type == 0 %}
+                        <li class="sidebar-item  ">
+                            <a href="../ad_search_major/" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>专业信息</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if admin_type == 3 or admin_type == 0 %}
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-basket-fill"></i>
@@ -93,12 +97,28 @@
                                 <li class="submenu-item ">
                                     <a href="../adsearch_amount_index/">按条件查询记录</a>
                                 </li>
+{#                                <li class="submenu-item ">#}
+{#                                    <a href="#">修改金额</a>#}
+{#                                </li>#}
+                            </ul>
+                        </li>
+                        {% endif %}
+                        {% if admin_type == 0 %}
+                         <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-basket-fill"></i>
+                                <span>用户管理</span>
+                            </a>
+                            <ul class="submenu" style="display: none;">
                                 <li class="submenu-item ">
-                                    <a href="#">修改金额</a>
+                                    <a href="#">管理员审核</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="#">修改管理员权限</a>
                                 </li>
                             </ul>
                         </li>
-
+                        {% endif %}
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -126,7 +146,7 @@
                     </div>
                     <div class="float-end">
                         <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="http://www.bootstrapmb.com">A. Saugi</a></p>
+                                href="#">A. Saugi</a></p>
                     </div>
                 </div>
             </footer>

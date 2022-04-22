@@ -35,5 +35,6 @@ urlpatterns = [
     path('finishdist/', views.finishdist_view),
     path('upload_file_go/', views.upload_file_go_view),
     path('upload_file/', views.upload_file_view),
+    path('adshow_admin/',views.adshow_admin_view),
     # path('admin_danger/', views.admin_danger_view)
 ]
