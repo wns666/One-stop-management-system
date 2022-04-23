@@ -126,6 +126,7 @@ class WAdmin(models.Model):
     w_adno = models.CharField(primary_key=True, max_length=50)
     w_pass = models.CharField(max_length=20)
     w_type = models.IntegerField(blank=True, null=True)
+    w_typeinform = models.CharField(max_length=50)
 
     class Meta:
         managed = False

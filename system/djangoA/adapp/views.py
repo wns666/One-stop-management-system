@@ -368,5 +368,34 @@ def upload_file_view(request):
 def adshow_admin_view(request):
     admin_user = request.session["login_user"]
     admin_type = request.session["login_type"]
-    admin_list = WAdmin.objects.all()
+    admin_list = WAdmin.objects.filter(w_type__range=(1, 3))
+
     return render(request, "adshow_admin.html", locals())
+
+
+def update_admin_view(request):
+    u = request.POST.get("w_type", '')
+    v = request.POST.get("w_adno", '')
+    w = request.POST.get("w_pass", '')
+    if u == "1":
+        WAdmin.objects.filter(w_adno=v).update(w_type=u, w_typeinform="学生管理工作人员")
+    if u == "2":
+        WAdmin.objects.filter(w_adno=v).update(w_type=u, w_typeinform="专业管理工作人员")
+    if u == "3":
+        WAdmin.objects.filter(w_adno=v).update(w_type=u, w_typeinform="财务管理工作人员")
+    if w:
+        WAdmin.objects.filter(w_adno=v).update(w_pass=w)
+    return HttpResponseRedirect("/adapp/adshow_admin")
+
+
+def detel_admin_view(request):
+    u = request.GET.get("id")
+    WAdmin.objects.filter(w_adno=u).delete()
+    return HttpResponseRedirect("/adapp/adshow_admin")
+
+
+def adadd_admin_view(request):
+    u = request.POST.get("w_newadmin", '')
+    zc = WAdmin(w_adno=u, w_pass="12138", w_type="1", w_typeinform="学生管理工作人员")
+    zc.save()
+    return HttpResponseRedirect("/adapp/adshow_admin")

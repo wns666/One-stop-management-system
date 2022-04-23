@@ -1,20 +1,75 @@
 {% extends "addatabase.html" %}
+
 {% block tablehead %}
     <th>账号</th>
-    <th>类型</th>
+    <th>信息</th>
+    <th>修改密码</th>
     <th>编辑</th>
+    <th></th>
+{% endblock %}
+{% block search %}
+
+        <form action="/adapp/adadd_admin/" method="post">
+        {% csrf_token %}
+            <div class="row">
+            <div class="col-md-6">
+                <input type="text" name="w_newadmin" class="form-control" placeholder="账号..." required="required">
+            </div>
+            <div class="col-md-3">
+                <input class="btn btn-primary" type="submit" value="添加管理员">
+            </div>
+            </div>
+        </form>
+
+
 {% endblock %}
 {% block tablebody %}
 
     {% for list in admin_list %}
         <tr>
         <td>{{ list.w_adno }}</td>
-        <td>{{ list.w_type }}</td>
-        <td>
-{#            <a href="/adapp/showdist_go/?id={{ publisher_obj.w_no }}" class="btn btn-primary">修改</a>#}
-        </td>
+{#        <td>#}
+
+            <form action="/adapp/update_admin/" method="post">
+                {% csrf_token %}
+{#                <div class="row">#}
+{#                    <div class="col-md-3">#}
+                <td>
+                    <input name="w_adno" value="{{ list.w_adno }}" hidden>
+                        <select name="w_type" class="form-select" style="width: 70%">
+                            <option selected="">{{ list.w_typeinform }}</option>
+                            <option value="1">学生管理工作人员</option>
+                            <option value="2">专业管理工作人员</option>
+                            <option value="3">财务管理工作人员</option>
+                         </select>
+                </td>
+
+{#                    </div>#}
+{#                    <div class="col-md-3">#}
+                <td>
+                    <input type="text" name="w_pass" class="form-control" style="width: 50%" placeholder="**********">
+                </td>
+
+{#                    </div>#}
+{#                    <div class="col-md-3">#}
+                <td>
+                    <input class="btn btn-primary" type="submit" value="修改">
+                </td>
+
+{#                    </div>#}
+                </div>
+
+            </form>
+{#        </td>#}
+            <td>
+                <a href="/adapp/detel_admin/?id={{ list.w_adno }}" class="btn btn-danger">删除</a>
+            </td>
+
         </tr>
     {% endfor %}
 
 
+{% endblock %}
+{% block ltitle %}
+    <h3>用户管理</h3>
 {% endblock %}

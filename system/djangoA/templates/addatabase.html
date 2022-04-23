@@ -103,7 +103,14 @@
                             </ul>
                         </li>
                         {% endif %}
-
+                        {% if admin_type == 0 %}
+                         <li class="sidebar-item  ">
+                            <a href="../adshow_admin/" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>管理员</span>
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
