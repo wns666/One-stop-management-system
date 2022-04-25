@@ -150,4 +150,4 @@ def add_reward_view(request):
     zc = WRewardApply(w_name=b, w_thing=d, w_date=c, w_ano=a, w_rename=f, w_organ=g, w_rl=e)
     zc.save()
     succ_msg = "已成功提交给管理员"
-    return render(request, "success.html", locals())
+    return render(request, "stu_add_reward.html", locals())

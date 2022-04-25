@@ -263,6 +263,7 @@ def adstate_view(request):
     ad_stu2 = WDist.objects.get(w_ano=u)
     ad_stu3 = WInform.objects.get(w_ano=u)
     ad_stu4 = WTotal.objects.get(w_ano=u)
+    reward_list = WReward.objects.filter(w_ano=u)
     return render(request, "adinformation.html", locals())
 
 
